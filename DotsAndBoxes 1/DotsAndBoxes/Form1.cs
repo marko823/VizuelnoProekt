@@ -11,8 +11,9 @@ namespace DotsAndBoxes
 {
     public partial class Form1 : Form
     {
-        Igrac ig1;
-        Igrac ig2;
+        public Igrac ig1;
+        public Igrac ig2;
+
         public Form1()
         {
             InitializeComponent();
@@ -43,10 +44,18 @@ namespace DotsAndBoxes
 
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            ig1 = new Igrac(txtImeP1.Text, panel1.BackColor);
-            ig2 = new Igrac(txtImeP2.Text, panel2.BackColor);
-            MessageBox.Show(string.Format("{0}\n{1}", ig1, ig2));
-        }
-                       
+            if (panel1.BackColor.Equals(panel2.BackColor))
+            {
+                MessageBox.Show("Мора да изберете различни бои!");
+            }
+            else
+            {
+                ig1 = new Igrac(txtImeP1.Text, panel1.BackColor, 0);
+                ig2 = new Igrac(txtImeP2.Text, panel2.BackColor, 0);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                NewGame ng = new NewGame(ig1, ig2);
+                ng.ShowDialog();
+            }
+        }            
     }
 }

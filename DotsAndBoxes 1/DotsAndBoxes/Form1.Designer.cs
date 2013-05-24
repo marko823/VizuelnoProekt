@@ -142,7 +142,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(328, 177);
+            this.btnCancel.Location = new System.Drawing.Point(328, 193);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 23);
             this.btnCancel.TabIndex = 2;
@@ -152,7 +152,7 @@
             // 
             // btnNewGame
             // 
-            this.btnNewGame.Location = new System.Drawing.Point(222, 177);
+            this.btnNewGame.Location = new System.Drawing.Point(222, 193);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(94, 23);
             this.btnNewGame.TabIndex = 3;
@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 212);
+            this.ClientSize = new System.Drawing.Size(432, 228);
             this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox2);
