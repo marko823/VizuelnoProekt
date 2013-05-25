@@ -58,6 +58,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.groupBox1.Controls.Add(this.rBtnP1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.panel1);
@@ -178,22 +179,24 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCancel.Location = new System.Drawing.Point(322, 288);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 23);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Откажи";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnNewGame
             // 
+            this.btnNewGame.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNewGame.Location = new System.Drawing.Point(222, 288);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(94, 23);
             this.btnNewGame.TabIndex = 3;
             this.btnNewGame.Text = "Нова игра";
-            this.btnNewGame.UseVisualStyleBackColor = true;
+            this.btnNewGame.UseVisualStyleBackColor = false;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
             // groupBox3
@@ -261,6 +264,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(433, 323);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -269,6 +273,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dots & Boxes";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -49,7 +49,7 @@
             // 
             this.lblBrRunda.AutoSize = true;
             this.lblBrRunda.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblBrRunda.Location = new System.Drawing.Point(148, 24);
+            this.lblBrRunda.Location = new System.Drawing.Point(148, 9);
             this.lblBrRunda.Name = "lblBrRunda";
             this.lblBrRunda.Size = new System.Drawing.Size(69, 73);
             this.lblBrRunda.TabIndex = 1;
@@ -74,13 +74,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(227, 120);
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.ClientSize = new System.Drawing.Size(217, 104);
             this.Controls.Add(this.lblBrRunda);
             this.Controls.Add(this.lblBroj);
             this.Controls.Add(this.label1);
             this.Name = "numRound";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "numRound";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

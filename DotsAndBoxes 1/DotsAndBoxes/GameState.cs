@@ -24,7 +24,7 @@ namespace DotsAndBoxes
             inicMatrica();
         }
         
-        // Implementacija so konkretni indexi
+        // Implementacija
         public string proveriAzurZatvoranje(int x, int y)
         {
             if (tipIgra == 1 && (x % 2 == 1) && y == 2 && this.provAzurRight(x, y) && this.provAzurLeft(x, y))

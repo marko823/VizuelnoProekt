@@ -15,11 +15,14 @@ namespace DotsAndBoxes
         public Igrac ig2;
         public int turn = 1;
         public int Rundi = 1;
+        public string KraenRez;
         
 
         public Form1()
         {
             InitializeComponent();
+            this.AcceptButton = btnNewGame;
+            this.CancelButton = btnCancel;
             panel1.BackColor = Color.Red;
             panel2.BackColor = Color.Blue;                 
         }
@@ -49,11 +52,11 @@ namespace DotsAndBoxes
         {
             if (panel1.BackColor.Equals(panel2.BackColor))
             {
-                MessageBox.Show("Мора да изберете различни бои!");
+                MessageBox.Show("Мора да изберете различни бои!", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             if (cBoxTipIgra.SelectedIndex == -1)
             {
-                MessageBox.Show("Мора да изберете тип на игра");
+                MessageBox.Show("Мора да изберете тип на игра", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -61,7 +64,8 @@ namespace DotsAndBoxes
                 ig1 = new Igrac(txtImeP1.Text, panel1.BackColor, 0);
                 ig2 = new Igrac(txtImeP2.Text, panel2.BackColor, 0);
                 NewGame ng = new NewGame(ig1, ig2, cBoxTipIgra.SelectedIndex, turn, Rundi, 1 );
-                ng.Show();                
+                ng.Show();
+                //this.Hide();
             }
         }
 
@@ -91,6 +95,9 @@ namespace DotsAndBoxes
             {
                 Rundi = int.Parse(txtBrRundi.Text);                
             }            
-        }          
+        }
+
+        
+                  
     }
 }

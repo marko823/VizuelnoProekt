@@ -14,11 +14,13 @@ namespace DotsAndBoxes
 {
     public partial class numRound : Form
     {
-        int numTicks = 0;        
+        int numTicks = 0;
+        int start = 3;
         public SoundPlayer tick = new SoundPlayer(Resources.tick);
         public numRound(int brRunda)
         {
-            InitializeComponent();            
+            InitializeComponent();
+            ControlBox = false;
             lblBrRunda.Text = brRunda.ToString();
             lblBroj.Visible = false;
             timer123.Start();            
@@ -41,7 +43,8 @@ namespace DotsAndBoxes
             else
             {
                 tick.Play();
-                lblBroj.Text = (numTicks - 1).ToString();            
+                lblBroj.Text = start.ToString();
+                start--;
             }                
         }
     }

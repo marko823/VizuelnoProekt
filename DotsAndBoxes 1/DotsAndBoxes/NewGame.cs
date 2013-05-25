@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Media;
 using DotsAndBoxes.Properties;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace DotsAndBoxes
 {
@@ -19,22 +22,22 @@ namespace DotsAndBoxes
         public int Turn;
         public int brRunda;
         public int Rundi;
-        public KraenRez Rezultat = new KraenRez();
-        
+        public static int pobP1 = 0;
+        public static int pobP2 = 0;
+        public static string KraenRez;        
 
         public SoundPlayer My_sound1 = new SoundPlayer(Resources.button_15);
-        public SoundPlayer My_sound2 = new SoundPlayer(Resources.TaDa);
+               
 
         public NewGame(Igrac ig1, Igrac ig2, int tipIgra, int turn, int rundi, int brrunda)
         {
             InitializeComponent();
-            dc = this.CreateGraphics();            
+            this.Text = "Рунда " + brrunda;
+            dc = this.CreateGraphics();
 
             ig1.Score = 0;
-            ig2.Score = 0;
-            txtP1score.Text = ig1.Score.ToString();
-            txtP2score.Text = ig2.Score.ToString();
-
+            ig2.Score = 0;                      
+            
             Rundi = rundi;
             Turn = turn;
 
@@ -97,16 +100,19 @@ namespace DotsAndBoxes
                     if (gs.turn == 1)
                     {
                         pan.BackColor = gs.ig1.Boja;
+
                         txtP1.BackColor = gs.ig1.Boja;
                         txtP2.BackColor = Color.WhiteSmoke;
                         this.crtanjeX(gs.proveriAzurZatvoranje(x, y), pan);
+
                         if (gs.proveriAzurZatvoranje(x, y).Length == 2)
                             gs.ig1.Score += 2;
                         else gs.ig1.Score += 1;                        
                     }
-                    else
+                    else if (gs.turn == 0)
                     {
                         pan.BackColor = gs.ig2.Boja;
+
                         txtP2.BackColor = gs.ig2.Boja;
                         txtP1.BackColor = Color.WhiteSmoke;
                         this.crtanjeX(gs.proveriAzurZatvoranje(x, y), pan);
@@ -115,8 +121,9 @@ namespace DotsAndBoxes
                         else gs.ig2.Score += 1;                        
                     }
                     txtRez.Text = string.Format("{0}:{1}", gs.ig1.Score, gs.ig2.Score);
-                }
                     
+                }
+                 
                 else if (gs.turn == 1)
                 {
                     pan.BackColor = gs.ig1.Boja;
@@ -124,7 +131,7 @@ namespace DotsAndBoxes
                     txtP1.BackColor = Color.WhiteSmoke;
                     gs.turn = 0;
                 }
-                else
+                else if (gs.turn == 0)
                 {
                     pan.BackColor = gs.ig2.Boja;
                     txtP1.BackColor = gs.ig1.Boja;
@@ -282,7 +289,7 @@ namespace DotsAndBoxes
 
         private void p23_Click(object sender, EventArgs e)
         {
-            klik(p23, 2, 3);
+            klik(p23, 2, 3);            
             provPob();
         }
 
@@ -595,60 +602,64 @@ namespace DotsAndBoxes
         public void provPob()
         {
             int total = gs.ig1.Score + gs.ig2.Score;
-            int pbr = 0;
+            
             Igrac pob;
+            int pobBr;
             if (gs.ig1.Score > gs.ig2.Score)
             {
                 pob = gs.ig1;
-                pbr = 1;
+                pobBr = 1;
             }
             else
             {
                 pob = gs.ig2;
-                pbr = 2;            
+                pobBr = 2;
             }
 
             if (gs.tipIgra == 0 && total == 9)
             {
-                My_sound2.Play();
-                Rezultat.dodRezPob(txtRez.Text, pbr);
-                MessageBox.Show("Победник е " + pob.Ime);
-                this.Dispose();                
-                if (brRunda + 1 > Rundi)
-                    MessageBox.Show(Rezultat.ToString());
-                else
-                {
-                    NewGame ng = new NewGame(gs.ig1, gs.ig2, gs.tipIgra, Turn, Rundi, brRunda + 1);
-                    ng.ShowDialog();                
-                }                
+                handlePobeda(pob, pobBr);                               
             }                
             else if (gs.tipIgra == 1 && total == 16)
             {
-                My_sound2.Play();
-                Rezultat.dodRezPob(txtRez.Text, pbr);
-                MessageBox.Show("Победник е " + pob.Ime);
-                this.Dispose();               
-                if (brRunda + 1 > Rundi)
-                    MessageBox.Show(Rezultat.ToString());
-                else
-                {
-                    NewGame ng = new NewGame(gs.ig1, gs.ig2, gs.tipIgra, Turn, Rundi, brRunda + 1);
-                    ng.ShowDialog();
-                }                
+                
+                handlePobeda(pob, pobBr);                              
             }
             else if (gs.tipIgra == 2 && total == 13)
             {
-                My_sound2.Play();
-                Rezultat.dodRezPob(txtRez.Text, pbr);
-                MessageBox.Show("Победник е " + pob.Ime);
-                this.Dispose();                
-                if (brRunda + 1 > Rundi)
-                    MessageBox.Show(Rezultat.ToString());
-                else
-                {
-                    NewGame ng = new NewGame(gs.ig1, gs.ig2, gs.tipIgra, Turn, Rundi, brRunda + 1);
-                    ng.ShowDialog();
-                }                
+                handlePobeda(pob, pobBr);                               
+            }            
+        }
+
+        public void handlePobeda(Igrac p, int br)
+        {
+            txtRez.Clear();            
+            txtRez.AppendText(string.Format("{0}:{1}", gs.ig1.Score, gs.ig2.Score));
+            if (br == 1) pobP1++;
+            else pobP2++;
+            
+            KraenRez += string.Format("{0}.                            {1}{2}", brRunda, txtRez.Text, Environment.NewLine);
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            //System.Threading.Thread.Sleep(200);
+            this.Dispose();
+            if (brRunda + 1 > Rundi)
+            {                
+                string s;
+                if (pobP1 > pobP2)
+                    s = gs.ig1.Ime;
+                else if (pobP1 < pobP2)
+                    s = gs.ig2.Ime;
+                else s = "Нерешено";
+                KraenRezultat kr = new KraenRezultat(KraenRez, pobP1, pobP2, s);
+                KraenRez = "";
+                pobP1 = 0;
+                pobP2 = 0;
+                kr.ShowDialog();                
+            }
+            else
+            {
+                NewGame ng = new NewGame(gs.ig1, gs.ig2, gs.tipIgra, Turn, Rundi, brRunda + 1);
+                ng.ShowDialog();
             }
             
         }
@@ -660,5 +671,6 @@ namespace DotsAndBoxes
             runda.Owner = this;
             runda.ShowDialog();
         }
+        
      }
 }

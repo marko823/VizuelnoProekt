@@ -54,7 +54,12 @@
     </Compile>
     <Compile Include="GameState.cs" />
     <Compile Include="Igrac.cs" />
-    <Compile Include="KraenRez.cs" />
+    <Compile Include="KraenRezultat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KraenRezultat.Designer.cs">
+      <DependentUpon>KraenRezultat.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KraenRezultat.resx">
+      <DependentUpon>KraenRezultat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewGame.resx">
       <DependentUpon>NewGame.cs</DependentUpon>

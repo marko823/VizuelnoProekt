@@ -78,8 +78,6 @@
             this.p510 = new System.Windows.Forms.Panel();
             this.txtP2 = new System.Windows.Forms.TextBox();
             this.txtP1 = new System.Windows.Forms.TextBox();
-            this.txtP1score = new System.Windows.Forms.TextBox();
-            this.txtP2score = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // p10
@@ -300,6 +298,7 @@
             // 
             // txtRez
             // 
+            this.txtRez.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtRez.Enabled = false;
             this.txtRez.Location = new System.Drawing.Point(410, 40);
             this.txtRez.Multiline = true;
@@ -311,13 +310,14 @@
             // 
             // btnRestart
             // 
+            this.btnRestart.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnRestart.Location = new System.Drawing.Point(410, 372);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(135, 48);
             this.btnRestart.TabIndex = 7;
             this.btnRestart.Text = "Рестартирај";
-            this.btnRestart.UseVisualStyleBackColor = true;
+            this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
             // p07
@@ -539,35 +539,12 @@
             this.txtP1.TabIndex = 10;
             this.txtP1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtP1score
-            // 
-            this.txtP1score.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtP1score.Enabled = false;
-            this.txtP1score.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtP1score.Location = new System.Drawing.Point(365, 124);
-            this.txtP1score.Name = "txtP1score";
-            this.txtP1score.Size = new System.Drawing.Size(87, 22);
-            this.txtP1score.TabIndex = 11;
-            this.txtP1score.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtP2score
-            // 
-            this.txtP2score.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtP2score.Enabled = false;
-            this.txtP2score.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtP2score.Location = new System.Drawing.Point(458, 124);
-            this.txtP2score.Name = "txtP2score";
-            this.txtP2score.Size = new System.Drawing.Size(87, 22);
-            this.txtP2score.TabIndex = 12;
-            this.txtP2score.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // NewGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(559, 434);
-            this.Controls.Add(this.txtP2score);
-            this.Controls.Add(this.txtP1score);
             this.Controls.Add(this.txtP1);
             this.Controls.Add(this.txtP2);
             this.Controls.Add(this.p510);
@@ -619,6 +596,7 @@
             this.Controls.Add(this.p54);
             this.Controls.Add(this.p10);
             this.Name = "NewGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NewGame";
             this.Load += new System.EventHandler(this.NewGame_Load);
             this.ResumeLayout(false);
@@ -678,8 +656,6 @@
         private System.Windows.Forms.Panel p510;
         private System.Windows.Forms.TextBox txtP2;
         private System.Windows.Forms.TextBox txtP1;
-        private System.Windows.Forms.TextBox txtP1score;
-        private System.Windows.Forms.TextBox txtP2score;
 
 
     }
