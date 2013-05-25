@@ -13,6 +13,9 @@ namespace DotsAndBoxes
     {
         public Igrac ig1;
         public Igrac ig2;
+        public int turn = 1;
+        public int Rundi = 1;
+        
 
         public Form1()
         {
@@ -48,14 +51,46 @@ namespace DotsAndBoxes
             {
                 MessageBox.Show("Мора да изберете различни бои!");
             }
+            if (cBoxTipIgra.SelectedIndex == -1)
+            {
+                MessageBox.Show("Мора да изберете тип на игра");
+            }
             else
             {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 ig1 = new Igrac(txtImeP1.Text, panel1.BackColor, 0);
                 ig2 = new Igrac(txtImeP2.Text, panel2.BackColor, 0);
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                NewGame ng = new NewGame(ig1, ig2);
-                ng.ShowDialog();
+                NewGame ng = new NewGame(ig1, ig2, cBoxTipIgra.SelectedIndex, turn, Rundi, 1 );
+                ng.Show();                
             }
-        }            
+        }
+
+        private void rBtnP1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBtnP1.Checked == true)
+            {
+                turn = 1;
+                rBtnP2.Checked = false;
+            }
+            else turn = 0;
+        }
+
+        private void rBtnP2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rBtnP2.Checked == true)
+            {
+                turn = 0;
+                rBtnP1.Checked = false;
+            }
+            else turn = 1;
+        }
+
+        private void txtBrRundi_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBrRundi.Text.Trim().Length != 0)
+            {
+                Rundi = int.Parse(txtBrRundi.Text);                
+            }            
+        }          
     }
 }
